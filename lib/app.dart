@@ -21,7 +21,9 @@ import 'Module_013/class3.dart';
 import 'Module_014/class1.dart';
 import 'Module_014/class2/MasonryGridView.dart';
 import 'Module_014/class2/shimmerExmpole.dart';
+import 'Module_014/class3.dart';
 import 'Module_014/cls1_splashscreen.dart';
+import 'Module_016/ui/screens/task_homr_page.dart';
 import 'food_project/create.dart';
 import 'food_project/fav.dart';
 import 'food_project/home.dart';
@@ -58,6 +60,7 @@ class Myapp extends StatelessWidget {
         '/M13class2': (context) => M13class2(),
         '/M13class3': (context) => M13class3(),
         '/M14class1': (context) => M14class1(),
+        '/M14class3': (context) => M14class3(),
         '/M14class1_splashscreen': (context) => splashscreen(),
         '/grid': (context) => grid(),
         '/shimmerexmpole': (context) => shimmerexmpole(),
@@ -68,8 +71,9 @@ class Myapp extends StatelessWidget {
         '/profile': (context) => profile(),
         '/foods_home': (context) => foods_home(),
         '/create': (context) => create(),
+        '/taskhomepage': (context) => taskhomepage(),
       },
-      initialRoute: '/allfileDemo',
+      initialRoute: '/taskhomepage',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
@@ -90,7 +94,7 @@ class Myapp extends StatelessWidget {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.deepOrange,
+          backgroundColor: Colors.blue,
           titleTextStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           centerTitle: true,
         ),

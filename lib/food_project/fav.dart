@@ -6,7 +6,17 @@ class fav extends StatefulWidget {
   State<fav> createState() => _favState();
 }
 
-class _favState extends State<fav> {
+class _favState extends State<fav> with SingleTickerProviderStateMixin{
+  late TabController _tabController;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController=TabController(length: 4, vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,15 +68,50 @@ class _favState extends State<fav> {
                 ),
               ),
               SizedBox(width: 10),
-              Container(
-                padding: EdgeInsets.all(25),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              )
+             Column(
+               children: [
+                 Stack(
+                   children: [
+                     Container(
+                       padding: EdgeInsets.all(22),
+                       decoration: BoxDecoration(
+                         color: Colors.red,
+                         borderRadius: BorderRadius.circular(10),
+                         
+                       ),
+                     ),
+                     Column(
+                       children: [
+                         IconButton(onPressed: (){}, icon: Icon(Icons.tune,size:27,color: Colors.white,))
+                       ],
+                     )
+                   ],
+                 )
+               ],
+             ),
             ],
           ),
+          SizedBox(height: 30,),
+          TabBar(
+           
+            controller: _tabController,
+              tabs: [
+            Tab(text: 'All',),
+            Tab(text: 'Combos'),
+            Tab(text: 'Sliders'),
+            Tab(text: 'Classic'),
+
+          ]),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+                children: [
+              Text('All'),
+              Text('Combos'),
+              Text('Sliders'),
+              Text('Classic'),
+            ]),
+          )
             ],
           )
     );
