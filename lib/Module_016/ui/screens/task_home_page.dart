@@ -29,6 +29,20 @@ class _taskhomepageState extends State<taskhomepage> {
     }
 
   }
+  Future<void>deleteTask(int id) async {
+  await TaskDatabase.deleteTask(id);
+  refreshTask();
+
+  }
+
+  Future<void>toggleTaskStatus(Task task) async {
+  await TaskDatabase.updateTask(Task(
+    id: task.id,
+      title: task.title,
+      isDone: !task.isDone));
+  refreshTask();
+
+  }
 
 
   @override
@@ -65,13 +79,20 @@ class _taskhomepageState extends State<taskhomepage> {
                 final task = tasks[index];
                 return Card(
                   child: ListTile(
-                    title: Text(task.title),
-                    leading: Checkbox(value: true, onChanged: (_){}),
+                    leading: Checkbox(value: task.isDone, onChanged: (_){
+                      toggleTaskStatus(task);
+                    }),
+                    title: Text(task.title,style: TextStyle(
+                       decoration: task.isDone ? TextDecoration.lineThrough : TextDecoration.none,
+                      color:task.isDone ? Colors.grey : Colors.black
+                    ),),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(onPressed: (){}, icon: Icon(Icons.edit)),
-                        IconButton(onPressed: (){}, icon: Icon(Icons.delete,color: Colors.red,)),
+                        IconButton(onPressed: (){
+                          deleteTask(task.id!);
+                        }, icon: Icon(Icons.delete,color: Colors.red,)),
                       ],
                     ),
                   ),
